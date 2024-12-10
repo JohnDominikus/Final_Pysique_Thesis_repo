@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:physiqueai_apk/Screens/getstartedscreen.dart';
+import 'package:physiqueai_apk/navigationspage/getstartedscreen.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {

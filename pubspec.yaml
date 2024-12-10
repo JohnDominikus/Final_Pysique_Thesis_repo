@@ -14,7 +14,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.27.1
+  firebase_core: ^3.8.1
   # firebase_auth: ^9.1.0  # Uncomment if using Firebase Auth
   # cloud_firestore: ^4.15.9  # Uncomment if using Firestore
   # firebase_storage: ^11.2.1  # Uncomment if using Firebase Storage
@@ -28,6 +28,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   flutter_calendar_carousel: ^2.4.4
+  font_awesome_flutter: ^10.8.0
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,7 @@ flutter:
   # Add assets (ensure you have the correct path to the asset)
   assets:
     - assets/Physiquelogo.png
+    - assets/gymbackground.jpg
   #   - images/a_dot_ham.jpeg
 
   # Custom fonts (if required)

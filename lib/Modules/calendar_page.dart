@@ -8,7 +8,7 @@ class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Create some sample events
-    var _markedDates = [
+    var markedDates = [
       Event(
         date: DateTime(2024, 12, 10), // Example date
         title: 'Event 1',
@@ -40,7 +40,7 @@ class CalendarPage extends StatelessWidget {
 
     // Group the events by date (Map<DateTime, List<Event>>)
     Map<DateTime, List<Event>> markedDateMap = {};
-    for (var event in _markedDates) {
+    for (var event in markedDates) {
       if (markedDateMap.containsKey(event.date)) {
         markedDateMap[event.date]?.add(event);
       } else {
@@ -50,7 +50,7 @@ class CalendarPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: const Text('Calendar'),
       ),
       body: Center(
         child: CalendarCarousel<Event>(
@@ -58,10 +58,10 @@ class CalendarPage extends StatelessWidget {
             print('Pressed day: ${date.day}');
             // You can handle more logic based on the date pressed
           },
-          weekendTextStyle: TextStyle(
+          weekendTextStyle: const TextStyle(
             color: Colors.red,
           ),
-          headerTextStyle: TextStyle(
+          headerTextStyle: const TextStyle(
             color: Colors.blue,
           ),
           showHeader: true,

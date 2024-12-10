@@ -149,7 +149,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                child: Text('Calculate'),
+                child: const Text('Calculate'),
               ),
               const SizedBox(height: 20),
               if (bmi > 0)

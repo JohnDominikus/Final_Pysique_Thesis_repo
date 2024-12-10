@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "617658788110",
+    "project_id": "physiqedb",
+    "storage_bucket": "physiqedb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617658788110:android:f627b5c519d2c1366ecf5f",
+        "android_client_info": {
+          "package_name": "com.example.physiqueai_apk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7XLRjwOoKB8caU9UxGCVe-P-mbqteZ7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
