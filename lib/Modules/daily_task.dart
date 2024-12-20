@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TodoPage extends StatefulWidget {
-  const TodoPage({super.key});
+class DailyTask extends StatefulWidget {
+  const DailyTask({super.key});
 
   @override
-  _TodoPageState createState() => _TodoPageState();
+  _DailyTaskState createState() => _DailyTaskState();
 }
 
-class _TodoPageState extends State<TodoPage> {
+class _DailyTaskState extends State<DailyTask> {
   final List<String> _todos = [];
   final TextEditingController _todoController = TextEditingController();
 
@@ -31,7 +31,7 @@ class _TodoPageState extends State<TodoPage> {
       child: Column(
         children: [
           const Text(
-            'Todo List',
+            'Daily Tasks',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
@@ -67,4 +67,3 @@ class _TodoPageState extends State<TodoPage> {
     );
   }
 }
-

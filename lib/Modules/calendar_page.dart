@@ -38,8 +38,9 @@ class CalendarPage extends StatelessWidget {
       ),
     ];
 
-    // Group the events by date (Map<DateTime, List<Event>>)
+    // Group events by their date in a Map<DateTime, List<Event>>
     Map<DateTime, List<Event>> markedDateMap = {};
+
     for (var event in markedDates) {
       if (markedDateMap.containsKey(event.date)) {
         markedDateMap[event.date]?.add(event);
@@ -47,6 +48,9 @@ class CalendarPage extends StatelessWidget {
         markedDateMap[event.date] = [event];
       }
     }
+
+    // Wrap markedDateMap with EventList<Event>
+    EventList<Event> eventList = EventList<Event>(events: markedDateMap);
 
     return Scaffold(
       appBar: AppBar(
@@ -61,13 +65,8 @@ class CalendarPage extends StatelessWidget {
           weekendTextStyle: const TextStyle(
             color: Colors.red,
           ),
-          headerTextStyle: const TextStyle(
-            color: Colors.blue,
-          ),
-          showHeader: true,
-          markedDatesMap: EventList<Event>(  // Use EventList<Event> here
-            events: markedDateMap,  // Pass the map here
-          ),
+          thisMonthDayBorderColor: Colors.grey,
+          markedDatesMap: eventList, // Pass the EventList<Event>
         ),
       ),
     );

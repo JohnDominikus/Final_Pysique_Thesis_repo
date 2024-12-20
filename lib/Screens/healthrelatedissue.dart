@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:physiqueai_apk/Screens/fitnesspreferences.dart';
 import 'dashboard.dart'; // Import the FitnessDashboardScreen
 
 class HealthRelatedScreen extends StatefulWidget {
@@ -85,7 +86,7 @@ class _HealthRelatedScreenState extends State<HealthRelatedScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const FitnessDashboardScreen()),
+                      builder: (context) => const FitnessGoalsScreen()),
                 );
               },
               child: const Text('Go to Fitness Dashboard'),

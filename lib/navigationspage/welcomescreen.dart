@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'loginscreen.dart'; // Import Login Screen
-import 'registrationsceen.dart'
-    as reg; // Add a prefix 'reg' for the registration screen
+import 'registration_screen.dart' as reg; // Add a prefix 'reg' for the registration screen
 import 'dart:ui'; // For the BackdropFilter widget
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  bool isLoginHovered = false; // Track hover state for the Login button
+  bool isRegisterHovered = false; // Track hover state for the Register button
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           // Background Image with Blur Effect
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                     'assets/gymbackground.jpg'), // Gym background image
@@ -26,8 +33,7 @@ class WelcomeScreen extends StatelessWidget {
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0), // Blur effect
-              child:
-                  Container(), // Optional: Make the blur effect more noticeable
+              child: Container(), // Optional: Make the blur effect more noticeable
             ),
           ),
 
@@ -43,26 +49,17 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/Physiquelogo.png', // Replace with your logo file
-                        height: 50, // Adjust logo size as needed
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'Physique',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange,
-                        ),
+                        'assets/s.png', // Replace with your logo file
+                        height: 1000, // Adjust logo size as needed
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 50),
 
                 // Text Section (just above login/register buttons)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(
                     'Explore all your potential with personalized fitness tracking and food recommendations.',
                     style: TextStyle(
@@ -75,60 +72,103 @@ class WelcomeScreen extends StatelessWidget {
                 ),
 
                 // Move the Login and Register buttons to the bottom
-                Spacer(), // Pushes the buttons to the bottom of the screen
+                const Spacer(), // Pushes the buttons to the bottom of the screen
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Login Button
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        // Navigate to Login Screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepOrange,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                    // Login Button with hover effect
+                    MouseRegion(
+                      onEnter: (_) => setState(() => isLoginHovered = true),
+                      onExit: (_) => setState(() => isLoginHovered = false),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeInOut,
+                        decoration: BoxDecoration(
+                          boxShadow: isLoginHovered
+                              ? [
+                                  BoxShadow(
+                                    color: Colors.deepOrange.withOpacity(0.6),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 10),
+                                  ),
+                                ]
+                              : null, // Add shadow on hover
                         ),
-                      ),
-                      icon:
-                          Icon(Icons.login, color: Colors.white), // Login Icon
-                      label: Text(
-                        'Login',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            // Navigate to Login Screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: isLoginHovered
+                                ? Colors.orange
+                                : Colors.deepOrange,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 30),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          icon: const Icon(Icons.login,
+                              color: Colors.white), // Login Icon
+                          label: const Text(
+                            'Login',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 20), // Space between buttons
-                    // Register Button
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        // Navigate to Registration Screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  reg.RegistrationScreen()), // Using prefix
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orangeAccent,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                    const SizedBox(width: 20), // Space between buttons
+
+                    // Register Button with hover effect
+                    MouseRegion(
+                      onEnter: (_) => setState(() => isRegisterHovered = true),
+                      onExit: (_) => setState(() => isRegisterHovered = false),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeInOut,
+                        decoration: BoxDecoration(
+                          boxShadow: isRegisterHovered
+                              ? [
+                                  BoxShadow(
+                                    color: Colors.orangeAccent.withOpacity(0.6),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 10),
+                                  ),
+                                ]
+                              : null, // Add shadow on hover
                         ),
-                      ),
-                      icon: Icon(Icons.app_registration,
-                          color: Colors.white), // Register Icon
-                      label: Text(
-                        'Register',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            // Navigate to Registration Screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      reg.RegistrationScreen()), // Using prefix
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: isRegisterHovered
+                                ? Colors.deepOrange
+                                : Colors.orangeAccent,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 30),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          icon: const Icon(Icons.app_registration,
+                              color: Colors.white), // Register Icon
+                          label: const Text(
+                            'Register',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
                   ],

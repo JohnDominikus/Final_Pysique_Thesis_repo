@@ -6,7 +6,7 @@ class RegistrationScreen extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  RegistrationScreen({Key? key}) : super(key: key);
+  RegistrationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class RegistrationScreen extends StatelessWidget {
                   controller: fullNameController,
                   decoration: InputDecoration(
                     labelText: 'Full Name',
-                    prefixIcon: Icon(Icons.person, color: Colors.black),
+                    prefixIcon: const Icon(Icons.person, color: Colors.black),
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -62,7 +62,7 @@ class RegistrationScreen extends StatelessWidget {
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'E-Mail',
-                    prefixIcon: Icon(Icons.email, color: Colors.black),
+                    prefixIcon: const Icon(Icons.email, color: Colors.black),
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -78,7 +78,7 @@ class RegistrationScreen extends StatelessWidget {
                   controller: phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone No',
-                    prefixIcon: Icon(Icons.phone, color: Colors.black),
+                    prefixIcon: const Icon(Icons.phone, color: Colors.black),
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -95,7 +95,7 @@ class RegistrationScreen extends StatelessWidget {
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock, color: Colors.black),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.black),
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -144,7 +144,7 @@ class RegistrationScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.black),
                     ),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.black),
+                      side: const BorderSide(color: Colors.black),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

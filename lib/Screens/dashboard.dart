@@ -1,97 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:physiqueai_apk/Screens/bmi_calculator.dart'; // Import your BMI Calculator screen
+import 'package:physiqueai_apk/Screens/menubar.dart' as custom; // Alias 'menubar.dart' import
+import 'package:physiqueai_apk/Modules/calendar_page.dart'; // Import CalendarPage
+import 'package:physiqueai_apk/modules/daily_task.dart'; // Import DailyTaskScreen (make sure this exists)
 
-class FitnessDashboardScreen extends StatefulWidget {
-  const FitnessDashboardScreen({super.key});
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
-  @override      
-  _FitnessDashboardScreenState createState() => _FitnessDashboardScreenState();
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _FitnessDashboardScreenState extends State<FitnessDashboardScreen> {
-  void navigateToBMICalculator() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const BMICalculator()),
-    );
-  }
+class _DashboardScreenState extends State<DashboardScreen> {
+  String selectedMenu = "Dashboard"; // Tracks selected menu option
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.spa), // Posture AI Icon
-          onPressed: () {},
-        ),
-        title: const Text('Posture AI'),
-        centerTitle: true,
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.blue.shade800,
+        elevation: 0,
+        title: null, // Removed the app bar title
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Center - Posture Circle
-            Center(
-              child: Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.orange.withOpacity(0.2),
-                  border: Border.all(
-                    color: Colors.orange,
-                    width: 4,
-                  ),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.accessibility_new, // Posture Icon
-                    size: 50,
-                    color: Colors.orange,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
-            // NEXT Button (Optional for Navigation)
-            ElevatedButton(
-              onPressed: navigateToBMICalculator,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                minimumSize: const Size(double.infinity, 50),
-              ),
-              child: const Text(
-                'NEXT',
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-            ),
-          ],
+      // Drawer is added to the Scaffold
+      drawer: Drawer(
+        child: custom.MenuBar(
+          onMenuItemSelected: (menu) {
+            setState(() {
+              selectedMenu = menu; // Update the selected menu when the menu item is selected
+            });
+          },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank), // Food Tracker Icon
-            label: 'Food Tracker',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.directions_run), // Exercise Tracker Icon
-            label: 'Exercise Tracker',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.videocam), // Exercise Video Icon
-            label: 'Exercise Videos',
+      body: Row(
+        children: [
+          // Main Content Area
+          Expanded(
+            child: Column(
+              children: [
+                // Selected Menu Name placed above the search bar
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    selectedMenu, // Displays the selected menu
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue.shade800,
+                    ),
+                  ),
+                ),
+                // Search Bar at the top
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      hintText: 'Search...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                // Content Below the Search Bar
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Remove or comment this text to eliminate the selected menu label
+                        // Text(
+                        //   'Selected Menu: $selectedMenu',
+                        //   style: TextStyle(fontSize: 20),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
